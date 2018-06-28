@@ -1,0 +1,77 @@
+    Matrix {
+        1 done
+            1 done
+            2 done
+            3 done
+        2 done
+        3 done
+        4 done
+        5 ----
+            1 ----
+            2 ----
+            3 ----
+            4 ----
+            5 ----
+            6 ----
+            7 ----
+            8 ----
+        6 ----
+    }
+
+    Collections {
+        1 done
+        2 done
+        3 done
+        4 done
+       *5 done
+       *6 ----
+        7 done
+        8 done
+       *9 done
+       10 done
+            1 done
+            2 done
+            3 done
+            4 done
+    }
+
+    Reflection {
+        1 done
+        2 done
+        3 done
+       *4 ----
+       *5 ----
+    }
+
+    Lambdas {
+        1 done
+        2 done
+        3 ----
+            1 done
+            2 done
+            3 done
+            4 done
+            5 done
+            6 done
+            7 done
+            8 ----
+            9 ----
+        4 ----
+        5 ----
+        6 ----
+    }
+
+    StreamAPI {
+        1 ----
+            1 ----
+            2 ----
+            3 ----
+            4 ----
+            5 ----
+            6 ----
+            7 ----
+            8 ----
+            9 ----
+           10 ----
+        2 ----
+    }

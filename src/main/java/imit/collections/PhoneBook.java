@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class PhoneBook {                            // Task 9*
+public class    PhoneBook {                            // Task 9*
     private Map<Human, List<String>> phonebook;
 
     public PhoneBook() {

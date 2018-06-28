@@ -2,7 +2,7 @@ package imit.collections;
 
 import java.util.Arrays;
 
-public class Group {
+public class Group {                                                                                        // Task 10-1
     private int id;
     private int[] data;
 
@@ -27,7 +27,7 @@ public class Group {
         this.data = data;
     }
 
-    public int getSize(){
+    public int getLength(){
         return getData().length;
     }
 
