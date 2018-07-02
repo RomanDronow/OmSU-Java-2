@@ -3,6 +3,7 @@ package imit.lambdas;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 
 public class LambdaDemo {
     public static final Function<String, Integer> FUNC_STRING_LENGTH = string -> string == null ? null : string.length();
@@ -13,13 +14,29 @@ public class LambdaDemo {
 
     public static final Function<String, Integer> FUNC_COUNT_WORDS = string -> string == null ? null : string.split(",").length;
 
-    public static final Function<Human, Integer> FUNC_AGE = human -> human == null ? null : human.getAge();
+    public static final Function<? extends Human, Integer> FUNC_GET_AGE = human -> human == null ? null : human.getAge();
 
-    public static final BiPredicate<Human, Human> BI_PREDICATE_LASTNAME = (human1, human2) -> human1 != null && human2 != null && human1.getLastName().equals(human2.getLastName());
+    public static final BiPredicate<? extends Human,? extends Human> BI_PREDICATE_LASTNAME = (human, human2) -> human != null && human2 != null && human.getLastName().equals(human2.getLastName());
 
-    public static final Function<Human, String> FUNC_COMPILE_FULLNAME = human -> {
+    public static final Function<? extends Human, String> FUNC_COMPILE_FULLNAME = human -> {
         return human == null ? null : human.getLastName().concat(" ")
                                 .concat(human.getFirstName()).concat(" ")
                                    .concat(human.getMiddleName());
+    };
+
+    public static final UnaryOperator<Human> UNARY_OPERATOR_INCREASE_AGE = human -> {
+        if (human == null) {
+            return null;
+        }
+        return new Human(human.getFirstName(),human.getMiddleName(),human.getLastName(),human.getAge()+1,human.getFloor());
+    };
+
+    public static final QuPredicate<Human,Human,Human,Integer> PREDICATE_NOT_YOUNGER = (human, human2, human3, age) -> {
+      if (human != null && human2 != null && human3 != null){
+          if (human.getAge() < age && human2.getAge() < age && human3.getAge() < age){
+              return true;
+          }
+      }
+      return false;
     };
 }

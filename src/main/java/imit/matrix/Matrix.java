@@ -1,6 +1,6 @@
 package imit.matrix;
 
-import imit.matrix.exceptions.OutOfBoundsException;
+import imit.matrix.exceptions.MatrixException;
 
 import java.util.Arrays;
 
@@ -29,21 +29,21 @@ public class Matrix implements IMatrix {
         this.isCalculated = false;
     }
 
-    public double getElement(int x, int y) throws OutOfBoundsException {
+    public double getElement(int x, int y) throws MatrixException {
         if ((x >= size || x < 0) || (y >= size || y < 0)) {
-            throw new OutOfBoundsException();
+            throw new MatrixException();
         }
         return matrix[x * size + y];
     }
 
-    public void setElement(int y, int x, double value) throws OutOfBoundsException {
+    public void setElement(int y, int x, double value) throws MatrixException {
         if ((x >= size || x < 0) || (y >= size || y < 0)) {
-            throw new OutOfBoundsException();
+            throw new MatrixException();
         }
         matrix[this.x * size + this.y] = value;
     }
 
-    public double calculateDeterminant() throws OutOfBoundsException {
+    public double calculateDeterminant() throws MatrixException {
         if (isCalculated) {
             return this.determinant;
         }
@@ -104,4 +104,4 @@ public class Matrix implements IMatrix {
     public int hashCode() {
         return Arrays.hashCode(matrix);
     }
-}
+}       //Task 3

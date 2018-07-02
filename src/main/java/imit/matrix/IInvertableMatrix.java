@@ -1,5 +1,7 @@
 package imit.matrix;
 
+import imit.matrix.exceptions.MatrixException;
+
 public interface IInvertableMatrix extends IMatrix{
-    void getInvertedMatrix();
-}
+    Matrix getInvertedMatrix() throws MatrixException;
+}       //Task 2

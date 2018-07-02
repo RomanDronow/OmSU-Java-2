@@ -1,11 +1,11 @@
 package imit.matrix;
 
-import imit.matrix.exceptions.OutOfBoundsException;
+import imit.matrix.exceptions.MatrixException;
 
 public interface IMatrix {
 
-    double getElement(int x, int y) throws OutOfBoundsException;
-    void setElement(int y, int x, double value) throws OutOfBoundsException;
-    double calculateDeterminant() throws OutOfBoundsException ;
+    double getElement(int x, int y) throws MatrixException;
+    void setElement(int y, int x, double value) throws MatrixException;
+    double calculateDeterminant() throws MatrixException;
     int getSize();
-}
+}       // Task 1
