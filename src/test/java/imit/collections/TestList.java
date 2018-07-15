@@ -109,11 +109,6 @@ public class TestList {
         humap.put(1,hum1);
         humap.put(2,hum2);
         humap.put(3,hum3);
-        assertEquals(1, humansUnderAge(humap,pasta));
-    }
-
-    @Test
-    public void testGroups(){
-
+        assertEquals("[Human{Ivan Ivanovich Ivanov , age=18}]", humansUnderAge(humap,pasta).toString());
     }
 }

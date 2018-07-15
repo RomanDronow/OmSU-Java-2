@@ -1,9 +1,6 @@
 package imit.collections;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class    PhoneBook {                            // Task 9*
     private Map<Human, List<String>> phonebook;
@@ -13,9 +10,8 @@ public class    PhoneBook {                            // Task 9*
     }
 
     public void addNumber(Human name, String number) {
-        List<String> temp = phonebook.get(name);
-        temp.add(number);
-        phonebook.put(name, temp);
+        phonebook.putIfAbsent(name, new ArrayList<>());
+        phonebook.get(name).add(number);
     }
 
     public void removeNumber(Human name, String number) {

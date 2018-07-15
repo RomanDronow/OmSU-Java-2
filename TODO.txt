@@ -6,16 +6,16 @@
         2 done
         3 done
         4 done
-        5 ----
-            1 ----
-            2 ----
-            3 ----
-            4 ----
-            5 ----
-            6 ----
-            7 ----
-            8 ----
-        6 ----
+        5 done
+            1 done
+            2 done
+            3 done
+            4 done
+            5 done
+            6 done
+            7 done
+            8 done
+        6 done
     }
 
     Collections {

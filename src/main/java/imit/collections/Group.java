@@ -23,7 +23,7 @@ public class Group {                                                            
         return data;
     }
 
-    public void setData(int[] data) {
+    public void setData(int ... data) {
         this.data = data;
     }
 
