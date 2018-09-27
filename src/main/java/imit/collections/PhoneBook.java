@@ -2,8 +2,8 @@ package imit.collections;
 
 import java.util.*;
 
-public class    PhoneBook {                            // Task 9*
-    private Map<Human, List<String>> phonebook;
+class    PhoneBook {                            // Task 9*
+    private final Map<Human, List<String>> phonebook;
 
     public PhoneBook() {
         phonebook = new HashMap<>();
@@ -16,9 +16,7 @@ public class    PhoneBook {                            // Task 9*
 
     public void removeNumber(Human name, String number) {
         List<String> temp = phonebook.get(name);
-        if (temp.contains(number)) {
-            temp.remove(number);
-        }
+        temp.remove(number);
         phonebook.put(name, temp);
     }
 

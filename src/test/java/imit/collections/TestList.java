@@ -11,7 +11,7 @@ public class TestList {
 
     @Test
     public void testCountByChar(){
-        List<String> sample = new ArrayList<String>();
+        List<String> sample = new ArrayList<>();
         sample.add("abc");
         sample.add("abd");
         sample.add("bca");
@@ -51,9 +51,9 @@ public class TestList {
     @Test
     public void testNotIntersects(){
         List<Set<Integer>> sets = new ArrayList<>();
-        Set<Integer> set1 = new HashSet<Integer>();
-        Set<Integer> set2 = new HashSet<Integer>();
-        Set<Integer> controlSet = new HashSet<Integer>();
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
+        Set<Integer> controlSet = new HashSet<>();
         set1.add(1);
         set1.add(2);
         set1.add(3);

@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class StreamApiDemo extends LambdaDemo {
+class StreamApiDemo extends LambdaDemo {
     public static final Function<List<Object>, List<Object>> FUNCTION_REMOVE_ALLNULL =
             list -> list != null ? list.stream()
                     .filter(Objects::nonNull)

@@ -25,19 +25,19 @@ public class TestLambdas {
 
     @Test
     public void PredicateTest() {
-        assertEquals(true, LambdaRunner.run(LambdaDemo.PREDICATE_NO_WHITESPACES, "qwert"));
-        assertEquals(false, LambdaRunner.run(LambdaDemo.PREDICATE_NO_WHITESPACES, "qwer t"));
+        assertTrue(LambdaRunner.run(LambdaDemo.PREDICATE_NO_WHITESPACES, "qwert"));
+        assertFalse(LambdaRunner.run(LambdaDemo.PREDICATE_NO_WHITESPACES, "qwer t"));
     }
 
     @Test
     public void BiPredicateTest() {
-        assertEquals(true, LambdaRunner.run(LambdaDemo.BI_PREDICATE_LASTNAME, h1, h2));
-        assertEquals(false, LambdaRunner.run(LambdaDemo.BI_PREDICATE_LASTNAME, h1, h3));
+        assertTrue(LambdaRunner.run(LambdaDemo.BI_PREDICATE_LASTNAME, h1, h2));
+        assertFalse(LambdaRunner.run(LambdaDemo.BI_PREDICATE_LASTNAME, h1, h3));
     }
 
     @Test
     public void QuadroPredicateTest() {
-        assertEquals(true, LambdaRunner.run(LambdaDemo.QU_PREDICATE_NOT_YOUNGER, h1, h2, s1, 13));
-        assertEquals(false, LambdaRunner.run(LambdaDemo.QU_PREDICATE_NOT_YOUNGER, h1, h2, s1, 12));
+        assertTrue(LambdaRunner.run(LambdaDemo.QU_PREDICATE_NOT_YOUNGER, h1, h2, s1, 13));
+        assertFalse(LambdaRunner.run(LambdaDemo.QU_PREDICATE_NOT_YOUNGER, h1, h2, s1, 12));
     }
 }

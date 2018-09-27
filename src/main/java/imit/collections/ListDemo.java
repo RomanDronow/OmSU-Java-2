@@ -2,7 +2,7 @@ package imit.collections;
 
 import java.util.*;
 
-public class ListDemo {
+class ListDemo {
     public  static int countByChar(List<String> strings, char symbol) {                 // Task 1
         int counter = 0;
         for (String string : strings) if (string.charAt(0) == symbol) counter++;
@@ -20,9 +20,8 @@ public class ListDemo {
     }
 
     public static List<Human> removePerson(List<Human> row, Human human) {                     // Task 3
-        List<Human> humans = row;
-        humans.remove(human);
-        return humans;
+        row.remove(human);
+        return row;
     }
 
     public static List<Set<Integer>> notIntersects(List<Set<Integer>> sets, Set<Integer> integerSet) {     // Task 4

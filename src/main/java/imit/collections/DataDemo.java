@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class DataDemo {
+class DataDemo {
     public static List<Integer> getAll(Data data) {
         List<Integer> list = new ArrayList<>();
         Iterator dataIterator = data.iterator();

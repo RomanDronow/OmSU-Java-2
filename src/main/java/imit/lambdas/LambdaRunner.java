@@ -3,9 +3,8 @@ package imit.lambdas;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
 
-public class LambdaRunner {
+class LambdaRunner {
 
     public static <T> boolean run(Predicate<T> f, T t) {
         return f.test(t);

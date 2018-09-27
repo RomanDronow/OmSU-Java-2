@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReflectionDemo {
+class ReflectionDemo {
 
     public int countHumans(List list){
         int counter = 0;

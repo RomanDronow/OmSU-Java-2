@@ -5,7 +5,7 @@ import java.util.Iterator;
 public class DataIterator implements Iterator<Integer> {
     private int groupIndex = 0;
     private int numberIndex = 0;
-    private Data data;
+    private final Data data;
 
     public DataIterator(Data data) {
         this.data = data;

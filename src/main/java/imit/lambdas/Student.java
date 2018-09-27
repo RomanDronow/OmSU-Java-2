@@ -3,7 +3,9 @@ package imit.lambdas;
 import java.util.Objects;
 
 public class Student extends Human {
-    public String university, faculty, speciality;
+    private String university;
+    private String faculty;
+    public String speciality;
 
     public Student(String firstName, String middleName, String lastName, int age, Sex sex, String university, String faculty, String speciality) {
         super(firstName, middleName, lastName, age, sex);

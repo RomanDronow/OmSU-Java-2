@@ -1,12 +1,8 @@
 package imit.collections;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-public class Data {                                                                                          //Task 10-2
-    String title;
-    Group[] groups;
+class Data {                                                                                          //Task 10-2
+    private String title;
+    private Group[] groups;
 
     public Data(){
         this.title = "default title";

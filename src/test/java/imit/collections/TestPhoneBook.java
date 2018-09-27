@@ -3,6 +3,7 @@ package imit.collections;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class TestPhoneBook {
     @Test
@@ -19,6 +20,6 @@ public class TestPhoneBook {
         pb.removeNumber(h1,"+1-555-333-11");
         assertEquals("+2-444-555-66",pb.getNumbersByName(h1).get(0));
         assertEquals(h1,pb.findHumanByNumber("+7-333-222-11"));
-        assertEquals(null,pb.findHumanByNumber("+9-333-111-77"));
+        assertNull(pb.findHumanByNumber("+9-333-111-77"));
     }
 }

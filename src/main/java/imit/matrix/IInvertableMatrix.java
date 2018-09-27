@@ -1,5 +1,5 @@
 package imit.matrix;
 
 public interface IInvertableMatrix extends IMatrix{
-    IMatrix invert();
+    IMatrix invert() throws MatrixException;
 }
