@@ -45,7 +45,7 @@ public class TestList {
         row.add(candidate2);
         row.add(candidate3);
         row.add(candidate4);
-        assertEquals(3, stalin(row, prey).size());
+        assertEquals(3, removePerson(row, prey).size());
     }
 
     @Test

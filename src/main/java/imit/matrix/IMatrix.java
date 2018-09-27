@@ -1,12 +1,8 @@
 package imit.matrix;
 
 public interface IMatrix {
-
+    double getElement(int row, int column);
+    void setElement(int row, int column, double elem);
+    double calculateDeterminant();
     int getSize();
-    double get(int i, int j);
-    void set(int i, int j, double value);
-    double getDeterminant();
-    IMatrix getCofactor(int row, int col);
-    IMatrix transpose();
-
 }

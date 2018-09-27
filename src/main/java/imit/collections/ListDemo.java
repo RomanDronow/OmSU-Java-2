@@ -9,26 +9,26 @@ public class ListDemo {
         return counter;
     }
 
-    public static List<Human> namesakes(List<Human> candidates, Human person) {         // Task 2
+    public static List<Human> namesakes(List<Human> candidates, Human human) {         // Task 2
         List<Human> confirmed = new ArrayList<>();
         for (Human h : candidates) {
-            if (h.getLastName().equals(person.getLastName())) {
+            if (h.getLastName().equals(human.getLastName())) {
                 confirmed.add(h);
             }
         }
         return confirmed;
     }
 
-    public static List<Human> stalin(List<Human> row, Human prey) {                     // Task 3
-        List<Human> survivors = row;
-        survivors.remove(prey);
-        return survivors;
+    public static List<Human> removePerson(List<Human> row, Human human) {                     // Task 3
+        List<Human> humans = row;
+        humans.remove(human);
+        return humans;
     }
 
-    public static List<Set<Integer>> notIntersects(List<Set<Integer>> sets, Set<Integer> sausage) {     // Task 4
+    public static List<Set<Integer>> notIntersects(List<Set<Integer>> sets, Set<Integer> integerSet) {     // Task 4
         for (Set<Integer> s : sets) {
             int buf = s.size();
-            s.retainAll(sausage);
+            s.retainAll(integerSet);
             if (s.size() != buf) {
                 sets.remove(s);
             }
@@ -53,9 +53,9 @@ public class ListDemo {
         return oldies;
     }
 
-    public static Set<Human> humansInSet(HashMap<Integer, Human> humap, Set<Integer> pasta){            // Task 7
+    public static Set<Human> humansInSet(HashMap<Integer, Human> humap, Set<Integer> integers){            // Task 7
         Set<Human> result = new HashSet<>();
-        for(int num: pasta){
+        for(int num: integers){
             if (humap.containsKey(num)){
                 result.add(humap.get(num));
             }
@@ -63,9 +63,9 @@ public class ListDemo {
         return result;
     }
 
-    public static Set<Human> humansUnderAge(HashMap<Integer, Human> humap, Set<Integer> pasta){         // Task 8
+    public static Set<Human> humansUnderAge(HashMap<Integer, Human> humap, Set<Integer> integers){         // Task 8
         Set<Human> result = new HashSet<>();
-        for(int num: pasta){
+        for(int num: integers){
             if(humap.containsKey(num)&& humap.get(num).getAge()<=18){
                 result.add(humap.get(num));
             }

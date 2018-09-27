@@ -3,19 +3,19 @@ package imit.lambdas;
 import java.util.Objects;
 
 public class Human extends imit.collections.Human {
-    private Floor floor;
+    private Sex sex;
 
-    public Human(String firstName, String middleName, String lastName, int age, Floor floor){
+    public Human(String firstName, String middleName, String lastName, int age, Sex sex){
         super(firstName, middleName, lastName, age);
-        this.floor = floor;
+        this.sex = sex;
     }
 
-    public Floor getFloor() {
-        return floor;
+    public Sex getSex() {
+        return sex;
     }
 
-    public void setFloor(Floor floor) {
-        this.floor = floor;
+    public void setSex(Sex sex) {
+        this.sex = sex;
     }
 
     @Override
@@ -24,12 +24,12 @@ public class Human extends imit.collections.Human {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Human human = (Human) o;
-        return floor == human.floor;
+        return sex == human.sex;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(super.hashCode(), floor);
+        return Objects.hash(super.hashCode(), sex);
     }
 }
