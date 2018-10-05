@@ -8,16 +8,16 @@ public class InvertableMatrix extends Matrix implements IInvertableMatrix{
         super(size);
     }
 
-    public InvertableMatrix(IMatrix other) {
+    public InvertableMatrix(IMatrix other) throws ArrayIndexOutOfBoundsException {
         super(other);
     }
 
 
     @Override
-    public IInvertableMatrix invert() throws MatrixException {
+    public IInvertableMatrix invert() throws ArrayIndexOutOfBoundsException {
          double det = this.calculateDeterminant();
          if (det == 0){
-             throw new MatrixException("Determinant == zero");
+             throw new ArrayIndexOutOfBoundsException("Determinant == zero");
          }
          Matrix copy = new Matrix(this);
          return null;

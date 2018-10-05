@@ -6,97 +6,110 @@ import java.util.Objects;
 public class Matrix implements IMatrix {
     private final double[] array;
     private final int size;
+    private double determinant;
+    private boolean detCalculated;
 
+    public Matrix() {
+        size = 3;
+        array = new double[size * size];
+        determinant = 0;
+        detCalculated = false;
+    }
 
     public Matrix(int size) {
         this.size = size;
         array = new double[size * size];
+        determinant = 0;
+        detCalculated = false;
     }
 
-    public Matrix(IMatrix other) {
-        this(other.getSize());
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                setElement(i, j, other.getElement(i, j));
+    public Matrix(IMatrix other) throws ArrayIndexOutOfBoundsException {
+        size = other.getSize();
+        array = new double[size * size];
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
+                setElement(row, col, other.getElement(row, col));
             }
         }
+        this.determinant = other.getDeterminant();
+        detCalculated = true;
     }
 
     @Override
-    public double getElement(int row, int column) {
+    public double getElement(int row, int column) throws ArrayIndexOutOfBoundsException {
+        if (row < 0 || column < 0 || row >= size || column >= size)
+            throw new ArrayIndexOutOfBoundsException("Out of borders");
         return array[row * size + column];
     }
 
     @Override
-    public void setElement(int row, int column, double elem) {
+    public void setElement(int row, int column, double elem) throws ArrayIndexOutOfBoundsException {
+        if (row < 0 || column < 0 || row >= size || column >= size)
+            throw new ArrayIndexOutOfBoundsException("Out of borders");
+        detCalculated = false;
         array[row * size + column] = elem;
     }
 
     @Override
-    public double calculateDeterminant() {
-
-        Matrix bff = new Matrix(this);
-
-        int c = 1;
-        boolean isChanged = false;
-        while (getElement(0, 0) == 0) {
-            swapRows(c);
-            c++;
-            isChanged = true;
+    public double calculateDeterminant() throws ArrayIndexOutOfBoundsException {
+        if (size == 2) {
+            detCalculated = true;
+            determinant = array[0] * array[3] - array[1] * array[2];
+            return determinant;
         }
+        double det = 0;
+        int sign = 1;
+        for (int col = 0; col < size; col++) {
+            det += sign * getElement(0, col) * getAddMinor(0, col).getDeterminant();
+            sign *= -1;
+        }
+        detCalculated = true;
+        determinant = det;
+        return determinant;
+    }
 
-        double result = 1;
-        Matrix tmp = new Matrix(this);
-
-
+    public Matrix getAddMinor(int row, int column) throws ArrayIndexOutOfBoundsException {
+        Matrix result = new Matrix(size - 1);
         for (int i = 0; i < size; i++) {
+            if (i == row)
+                continue;
             for (int j = 0; j < size; j++) {
-                for (int k = 0; k < size; k++) {
-                    this.setElement(j, k, tmp.getElement(j, k));
-                }
+                if (j == column)
+                    continue;
+                result.setElement(i >= row ? i - 1 : i, j >= column ? j - 1 : j, getElement(i, j)); // спасибо идее за супер сокращения, я даже в комменты вынес
+                /*if (i >= row) {                                                                      то, что сначала было
+                    if (j >= column) {
+                        result.setElement(i - 1, j - 1, getElement(i, j));
+                    } else {
+                        result.setElement(i - 1, j, getElement(i, j));
+                    }
+                } else {
+                    if (j >= column) {
+                        result.setElement(i, j - 1, getElement(i, j));
+                    } else {
+                        result.setElement(i, j, getElement(i, j));
+                    }
+                }*/
             }
-
-            for (int j = i + 1; j < size; j++) {
-                for (int k = i; k < size; k++) {
-                    double temp = tmp.getElement(j, k) - tmp.getElement(i, k) * this.getElement(j, i) / tmp.getElement(i, i);
-                    tmp.setElement(j, k, temp);
-                }
-            }
-        }
-
-        for (int i = 0; i < size; i++) {
-            result = result * tmp.getElement(i, i);
-        }
-
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                setElement(i, j, bff.getElement(i, j));
-            }
-        }
-
-        if (isChanged) {
-            return -result;
         }
         return result;
     }
 
+
+    @Override
+    public double getDeterminant() throws ArrayIndexOutOfBoundsException {
+        if (detCalculated) {
+            return determinant;
+        }
+        determinant = calculateDeterminant();
+        detCalculated = true;
+        return determinant;
+
+    }
+
     @Override
     public int getSize() {
-        return this.size;
-    }
-
-    @Override
-    public String toString() {
-        return Arrays.toString(this.array);
-    }
-
-    private void swapRows(int row2) {
-        double[] buffer = new double[size];
-        for (int i = 0; i < size; i++) {
-            buffer[i] = getElement(0, i);
-            setElement(0, i, getElement(row2, i));
-            setElement(row2, i, buffer[i]);
-        }
+        return size;
     }
 
     @Override
@@ -112,7 +125,13 @@ public class Matrix implements IMatrix {
     public int hashCode() {
 
         int result = Objects.hash(size);
-        result = 31 * result + Arrays.hashCode(array);
+        result = 13 * result + Arrays.hashCode(array);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(array);
+    }
+
 }
