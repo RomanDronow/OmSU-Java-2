@@ -6,4 +6,5 @@ public interface IMatrix {
     double calculateDeterminant() throws ArrayIndexOutOfBoundsException;
     double getDeterminant() throws ArrayIndexOutOfBoundsException;
     int getSize();
+    IMatrix transpose();
 }

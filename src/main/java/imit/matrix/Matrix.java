@@ -1,9 +1,10 @@
 package imit.matrix;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Matrix implements IMatrix {
+public class Matrix implements IMatrix, Serializable {
     private final double[] array;
     private final int size;
     private double determinant;
@@ -105,6 +106,19 @@ public class Matrix implements IMatrix {
         detCalculated = true;
         return determinant;
 
+    }
+
+    @Override
+    public IMatrix transpose() {
+        IMatrix transposed = new Matrix(this);
+        double tmp;
+        for (int i = 0; i < size; i++)
+            for (int j = i + 1; j < size; j++) {
+                tmp = transposed.getElement(i, j);
+                transposed.setElement(i, j, transposed.getElement(j, i));
+                transposed.setElement(j, i, tmp);
+            }
+        return transposed;
     }
 
     @Override

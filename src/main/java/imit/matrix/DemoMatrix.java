@@ -1,27 +1,74 @@
 package imit.matrix;
 
-class DemoMatrix {
-    public static void main(String[] args) throws ArrayIndexOutOfBoundsException {
-        double start = System.nanoTime();
-        Matrix m1 = new Matrix(50);
-        /*m1.setElement(0,0,11);
-        m1.setElement(0,1,4);
-        m1.setElement(0,2,5);
-        m1.setElement(1,0,-2);
-        m1.setElement(1,1,3);
-        m1.setElement(1,2,4);
-        m1.setElement(2,0,5);
-        m1.setElement(2,1,1);
-        m1.setElement(2,2,2);*/
-        double c = 1;
-        for (int i = 0; i < m1.getSize(); i++) {
-            for (int j = 0; j < m1.getSize(); j++) {
-                m1.setElement(i,j,c);
-                c++;
+import java.io.*;
+
+public class DemoMatrix {
+    public static void write(IMatrix matrix, File file) throws IOException {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            bw.write(String.valueOf(matrix.getSize()));
+            bw.newLine();
+            for (int i = 0; i < matrix.getSize(); i++) {
+                for (int j = 0; j < matrix.getSize(); j++) {
+                    bw.write(String.valueOf(matrix.getElement(i, j)) + " ");
+                }
+                bw.newLine();
             }
         }
-        System.out.println(m1.getDeterminant());
-        System.out.println((System.nanoTime() - start)/1000000000);
     }
 
+    public static Matrix read(File file) throws MatrixException, IOException {
+        Matrix matrix = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            int size;
+            try {
+                size = Integer.parseInt(br.readLine());
+            } catch (NumberFormatException e) {
+                throw new MatrixException("No size written!");
+            }
+            matrix = new Matrix(size);
+            String[] line;
+            for (int i = 0; i < size; i++) {
+                line = br.readLine().split(" ");
+                for (int j = 0; j < size; j++) {
+                    matrix.setElement(i, j, Double.parseDouble(line[j]));
+                }
+            }
+        }
+        return matrix;
+    }
+
+    public static double sum(IMatrix matrix) {
+        double res = 0;
+        for (int i = 0; i < Math.pow(matrix.getSize(), 2); i++) {
+            res += matrix.getElement(i / matrix.getSize(), i % matrix.getSize());
+        }
+        return res;
+    }
+
+    public static void print(IMatrix matrix) {
+        for (int i = 0; i < matrix.getSize(); i++) {
+            for (int j = 0; j < matrix.getSize(); j++) {
+                System.out.print(String.valueOf(matrix.getElement(i, j)) + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        Matrix matrix = new Matrix(3);
+        matrix.setElement(0, 1, 2.4);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("test.dat"))) {
+            oos.writeObject(matrix);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("test.dat"))) {
+            matrix = (Matrix) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        print(matrix);
+        System.out.println(sum(matrix));
+    }
 }
