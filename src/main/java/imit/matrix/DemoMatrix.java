@@ -57,6 +57,7 @@ public class DemoMatrix {
     public static void main(String[] args) {
         Matrix matrix = new Matrix(3);
         matrix.setElement(0, 1, 2.4);
+        matrix.setElement(2, 1, 3.3);
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("test.dat"))) {
             oos.writeObject(matrix);
         } catch (IOException e) {

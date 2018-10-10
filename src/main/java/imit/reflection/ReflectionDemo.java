@@ -8,7 +8,7 @@ import java.util.List;
 
 class ReflectionDemo {
 
-    public int countHumans(List list){
+    public static int countHumans(List list){
         int counter = 0;
         for (Object obj : list){
             if (obj instanceof Human){
@@ -18,7 +18,7 @@ class ReflectionDemo {
         return counter;
     }
 
-    public List<String> getPublicMethods(Object object){
+    public static List<String> getPublicMethods(Object object){
         List<String> list = new ArrayList<>();
         Method[] methods = object.getClass().getMethods();
         for (Method m : methods){
@@ -27,7 +27,7 @@ class ReflectionDemo {
         return list;
     }
 
-    public List<String> getSupeclasses(Object object){
+    public static List<String> getSupeclasses(Object object){
         List<String> list = new ArrayList<>();
         Class superclass = object.getClass().getSuperclass();
         while (superclass != null){
